@@ -12,6 +12,7 @@ coverage/
 build/
 
 # misc
+.git
 .DS_Store
 .env
 .env.local
