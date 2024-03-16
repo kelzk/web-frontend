@@ -27,7 +27,6 @@
     "prettier-plugin-sort-json": "^3.0.1"
   },
   "pre-commit": [
-    "lint:format/js",
     "lint:depcheck",
     "lint"
   ]
