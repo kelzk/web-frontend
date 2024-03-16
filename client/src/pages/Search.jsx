@@ -9,7 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-
+import Header from '../components/Header.jsx'
+import Navigation from '../components/Navigation.jsx';
 const Search = () => {
   const { register, handleSubmit, watch } = useForm();
   const handleSearch = (input) => {
@@ -57,15 +58,8 @@ const Search = () => {
 
   return (
     <>
-      <div
-        style={{ display: 'flex', justifyContent: 'center', margin: '1rem' }}
-      >
-        <Link to="/">Home</Link>
-        <span style={{ margin: '0 0.5rem' }}>|</span>
-        <Link to="/search">Search</Link>
-        <span style={{ margin: '0 0.5rem' }}>|</span>
-        <Link to="/help">Help</Link>
-      </div>
+      <Header />
+      
       <form
         style={{
           display: 'flex',
@@ -180,6 +174,7 @@ const Search = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Navigation />
     </>
   );
 };
