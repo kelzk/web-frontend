@@ -1,5 +1,15 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import DefaultPage from './pages/DefaultPage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <DefaultPage />,
+  },
+]);
+
 const App = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -7,7 +17,7 @@ const App = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000");
+        const response = await axios.get('http://localhost:3000');
         console.log(response.data[0].name);
         setData(response.data[0].name);
         setIsLoading(false);
@@ -20,9 +30,7 @@ const App = () => {
 
   return (
     <div>
-      <div>First data's name:</div>
-      {isLoading && <div>Loading data...</div>}
-      <div>{data}</div>
+      <RouterProvider router={router} />
     </div>
   );
 };
