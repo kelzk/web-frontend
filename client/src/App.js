@@ -1,12 +1,22 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import DefaultPage from './pages/DefaultPage';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Help from './pages/Help';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <DefaultPage />,
+    element: <Home />,
+  },
+  {
+    path: '/search',
+    element: <Search />,
+  },
+  {
+    path: '/help',
+    element: <Help />,
   },
 ]);
 
