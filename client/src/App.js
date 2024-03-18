@@ -1,10 +1,8 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Help from './pages/Help';
-
+import SearchResults from './pages/SearchResults';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -18,30 +16,17 @@ const router = createBrowserRouter([
     path: '/help',
     element: <Help />,
   },
+  {
+    path: '/search_results',
+    element: <SearchResults />,
+  },
 ]);
 
 const App = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000');
-        console.log(response.data[0].name);
-        setData(response.data[0].name);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, []);
-
   return (
-    <div>
+    <>
       <RouterProvider router={router} />
-    </div>
+    </>
   );
 };
 

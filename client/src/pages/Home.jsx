@@ -1,9 +1,23 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import axios from 'axios'
 import { Typography, Container, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import Navigation from '../components/Navigation.jsx';
 const Home = () => {
+  const [holdings, setHoldings] = useState(null)
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/holdings');
+        setHoldings(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
+ 
   return (
     <>
       <Header />
@@ -19,7 +33,7 @@ const Home = () => {
         </Box>
       </Container>
       <Typography variant="h6" align="center">
-        Current holdings: <Link>TotalNum</Link> RNA virus secondary structures in total.
+        Current holdings: <Link to='/search_results'>{holdings}</Link> RNA virus secondary structures in total.
       </Typography>
       <Navigation />
     </>

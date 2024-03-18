@@ -1,22 +1,73 @@
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { useState } from 'react';
+import {
+  TextField,
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Box,
+  Container,
+} from '@mui/material';
 import { useForm } from 'react-hook-form';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header.jsx'
+import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header.jsx';
 import Navigation from '../components/Navigation.jsx';
 const Search = () => {
+  const navigate = useNavigate();
+
+  const [isExpand, setIsExpand] = useState(false);
+
   const { register, handleSubmit, watch } = useForm();
+
+  const handleToggle = () => {
+    if (isExpand) {
+      setIsExpand(false);
+    }
+    if (!isExpand) {
+      setIsExpand(true);
+    }
+  };
+
   const handleSearch = (input) => {
     // Access the input value using input.xx
-    console.log(input.source);
-    // Perform search logic using the input value
+    let str = '';
+    for (const [key, value] of Object.entries(input)) {
+      switch (key) {
+        case 'source':
+        case 'sourceId':
+        case 'type':
+        case 'organism':
+        case 'validationTechnique':
+        case 'determinationMethod':
+          if (input[key]) {
+            str += key + '=' + value + '&';
+          }
+          break;
+        default:
+          const isOption = key.includes('_option') ? true : false;
+          if (input[key] && !isOption) {
+            const optionStr = key + '_option';
+            if (input[optionStr] === '<' || input[optionStr] === '>') {
+              str += key + '=' + input[optionStr] + value + '&';
+            }
+            const isMin = key.includes('_min') ? true : false
+            const isMax = key.includes('_max') ? true : false
+
+            if (isMin) {
+              const keyStr = key.split('_')[0]
+              str += keyStr + '=' + value + '-';
+            }
+            if (isMax){
+              str += value + '&';
+            }
+          }
+      }
+    }
+
+    navigate(`/search_results?${str}`);
   };
 
   // Dummy data for the table
@@ -46,20 +97,12 @@ const Search = () => {
     },
     { label: 'Number of base pairs in bands', field: 'numOfBasePairsInBands' },
     { label: 'Number of base pairs in stems', field: 'numOfBasePairsInStems' },
-    { label: 'Minimum band length', field: 'minBandLength' },
-    { label: 'Average band length', field: 'avgBandLength' },
-    { label: 'Maximum band length', field: 'maxBandLength' },
-    { label: 'Average bulge length', field: 'avgBulgeLength' },
-    { label: 'Average hairpin length', field: 'avgHairpinLength' },
-    { label: 'Average stem length', field: 'avgStemLength' },
-    { label: 'Internal length', field: 'internalLength' },
-    { label: 'Multi length', field: 'multiLength' },
   ];
 
   return (
     <>
       <Header />
-      
+
       <form
         style={{
           display: 'flex',
@@ -70,84 +113,102 @@ const Search = () => {
         }}
         onSubmit={handleSubmit(handleSearch)}
       >
+        <Container>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <TextField
+              label="Source"
+              variant="outlined"
+              sx={{ margin: '1rem' }}
+              {...register('source')}
+            />
+            <TextField
+              label="SourceId"
+              variant="outlined"
+              sx={{ margin: '1rem' }}
+              {...register('sourceId')}
+            />
+            <TextField
+              label="Type"
+              variant="outlined"
+              sx={{ margin: '1rem' }}
+              {...register('type')}
+            />
+          </Box>
+        </Container>
+        <Container>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <TextField
+              label="Organism"
+              variant="outlined"
+              sx={{ margin: '1rem' }}
+              {...register('organism')}
+            />
+            <TextField
+              label="Validation Technique"
+              variant="outlined"
+              sx={{ margin: '1rem' }}
+              {...register('validationTechnique')}
+            />
+            <TextField
+              label="Determination Method"
+              variant="outlined"
+              sx={{ margin: '1rem' }}
+              {...register('determinationMethod')}
+            />
+          </Box>
+        </Container>
+        <Container sx={{ display: 'flex', justifyContent: 'center' }}>
+          {!isExpand && (
+            <Button variant="contained" onClick={handleToggle}>
+              Expand filter
+            </Button>
+          )}
+          {isExpand && (
+            <Button variant="contained" onClick={handleToggle} color="error">
+              Collapse filter
+            </Button>
+          )}
+        </Container>
         <div>
-          <TextField
-            label="Source"
-            variant="outlined"
-            sx={{ margin: '1rem' }}
-            {...register('source')}
-          />
-          <TextField
-            label="SourceId"
-            variant="outlined"
-            sx={{ margin: '1rem' }}
-            {...register('sourceId')}
-          />
-          <TextField
-            label="Type"
-            variant="outlined"
-            sx={{ margin: '1rem' }}
-            {...register('type')}
-          />
-          <TextField
-            label="Organism"
-            variant="outlined"
-            sx={{ margin: '1rem' }}
-            {...register('organism')}
-          />
-          <TextField
-            label="Validation Technique"
-            variant="outlined"
-            sx={{ margin: '1rem' }}
-            {...register('validationTechnique')}
-          />
-          <TextField
-            label="Determination Method"
-            variant="outlined"
-            sx={{ margin: '1rem' }}
-            {...register('determinationMethod')}
-          />
-        </div>
-
-        <div>
-          {rangeFields.map((field, index) => (
-            <div
-              key={field.field}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                marginBottom: '1rem',
-              }}
-            >
-              <label>{field.label}</label>
-              <select {...register(`${field.field}_option`)}>
-                <option value="<">Less than</option>
-                <option value=">">Greater than</option>
-                <option value="between">Between</option>
-              </select>
-              {watch(`${field.field}_option`) === 'between' ? (
-                <>
+          {isExpand &&
+            rangeFields.map((field, index) => (
+              <div
+                key={field.field}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  marginBottom: '1rem',
+                }}
+              >
+                <label>{field.label}</label>
+                <select {...register(`${field.field}_option`)}>
+                  <option value="<">Less than</option>
+                  <option value=">">Greater than</option>
+                  <option value="between">Between</option>
+                </select>
+                {watch(`${field.field}_option`) === 'between' ? (
+                  <>
+                    <input
+                      type="number"
+                      placeholder="Min"
+                      {...register(`${field.field}_min`)}
+                    />
+                    <input
+                      type="number"
+                      placeholder="Max"
+                      {...register(`${field.field}_max`)}
+                    />
+                  </>
+                ) : (
                   <input
                     type="number"
-                    placeholder="Min"
-                    {...register(`${field.field}_min`)}
+                    placeholder="Value"
+                    {...register(field.field)}
                   />
-                  <input
-                    type="number"
-                    placeholder="Max"
-                    {...register(`${field.field}_max`)}
-                  />
-                </>
-              ) : (
-                <input
-                  type="number"
-                  placeholder="Value"
-                  {...register(field.field)}
-                />
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            ))}
         </div>
         <Button type="submit" variant="contained">
           Search
