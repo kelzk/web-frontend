@@ -33,7 +33,7 @@ const Search = () => {
 
   const handleSearch = (input) => {
     // Access the input value using input.xx
-    let str = '';
+    let str = 'nPerPage=10&page=0&';
     for (const [key, value] of Object.entries(input)) {
       switch (key) {
         case 'source':
