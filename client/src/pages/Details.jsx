@@ -52,7 +52,7 @@ const Details = () => {
           <Typography align="center">fasta, bpseq, ct, pdb</Typography>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Button variant="contained" onClick={handleClick}>
-              View files and picture
+              View files and figure
             </Button>
           </Box>
           <Box sx={{ margin: '20px' }} />

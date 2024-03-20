@@ -52,6 +52,20 @@ const Home = () => {
           <CircularProgress />
         </div>
       )}
+      <hr />
+      <Typography align="center" variant="h5" >
+        Disclaimer
+      </Typography>
+      <Box sx={{padding:'2rem'}}>
+        <Typography variant="h6">
+          Use of the RNA virus secondary structure database is free of charge.
+          Although the authors have made every effort to ensure that the
+          database is correctly implemented, and fulfill the function described
+          in the documentation, neither the authors nor The Chinese University
+          of Hong Kong guarantee its correctness, fitness for a particular
+          purpose, or future availability.
+        </Typography>
+      </Box>
       <Navigation />
     </>
   );

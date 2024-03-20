@@ -1,0 +1,110 @@
+[
+  {
+    "field": "Name",
+    "meaning": "The molecule name may be derived from its function or the organism from which it is found, or from a file name or nomenclature of the database from which it was obtained."
+  },
+  {
+    "field": "Source",
+    "meaning": "The secondary structure is contained in which source database."
+  },
+  {
+    "field": "Source ID",
+    "meaning": "This refers to the ID of the molecule in the source database."
+  },
+  {
+    "field": "Type",
+    "meaning": "The type of the molecule typically refers to the family of functionally related molecules to which it belongs, e.g. ribosomal RNA (rRNA) or transfer RNA (tRNA). Non-biological molecules are of \"Synthetic\" type."
+  },
+  {
+    "field": "Organism",
+    "meaning": "This refers to the scientific name of the organism in which the molecule is found."
+  },
+  {
+    "field": "Validation Technique",
+    "meaning": "The secondary structure was determined using experimental methods such as NMR/X-Ray etc."
+  },
+  {
+    "field": "Determination Method",
+    "meaning": "This field gives information about how the secondary structure was determined. In cases where the secondary structure was determined from a 3D structure, details of the experimental method are listed (e.g. NMR, X-ray crystallography, chemical modification data) plus additional details on the relevant conditions or the degree of resolution of the method."
+  },
+  {
+    "field": "Molecule",
+    "meaning": "This is the number of RNA molecules that interact to form the secondary structure."
+  },
+  {
+    "field": "Length",
+    "meaning": "This refers to the number of bases in a molecule. For complexes with more than one molecule, the sum of the lengths of the molecules is taken."
+  },
+  {
+    "field": "numOfDomains",
+    "meaning": "This is the number of branches (or pseudoknotted regions) in the external loop."
+  },
+  {
+    "field": "numOfExteriorLoops",
+    "meaning": "This is the number of exterior loops."
+  },
+  {
+    "field": "numOfSegments",
+    "meaning": "This is the number of segments."
+  },
+  {
+    "field": "numOfPairedBases",
+    "meaning": "This is the number of paired bases in the molecule. The number of unpaired bases plus the number of paired bases is the length of the molecule."
+  },
+  {
+    "field": "numOfUnpairedBases",
+    "meaning": "This is the number of unpaired bases in the molecule. The number of unpaired bases plus the number of paired bases is the length of the molecule."
+  },
+  {
+    "field": "numOfStems",
+    "meaning": "This is the number of stems in the molecule. A stem (or uninterrupted stem) is a sequence of base pairs, with no interspersed internal or bulge loops. We include not only canonical (Watson-Crick and wobble G-U) base pairs, but also non-canonical base pairs and base pairs involving modified bases, in our stems. (Base pairs involving at least one base which is not A,C,G, or U - i.e. modified bases or bases represented using general characters of the IUPAC code) are reported as \"other base pair\" in the analyzer's output. We also include stems of length one - sometimes called isolated base pairs - in our secondary structure."
+  },
+  {
+    "field": "numOfHairpinLoops",
+    "meaning": "This is the number of hairpin loops in the molecule. A hairpin loop has one closing base pair. For complexes of two or more interacting molecules, the analyzer may report loops at the \"junctions\" of molecules; thus when analyzing loops, it is advisable to exclude complexes with two or more molecules."
+  },
+  {
+    "field": "numOfBulges",
+    "meaning": "This is the number of bulge loops in the molecule. A bulge loop has two closing base pairs i.j, i'.j', with either i and i' adjacent or j and j' adjacent (but not both). For complexes of two or more interacting molecules, the analyzer may report loops at the \"junctions\" of molecules; thus when analyzing loops, it is advisable to exclude complexes with two or more molecules."
+  },
+  {
+    "field": "numOfInternalLoops",
+    "meaning": "This is the number of internal loops in the molecule. An internal loop has two closing base pairs i.j, i'.j', with neither i and i' adjacent or j and j' adjacent, i.e. there are unpaired bases on each side of the loop. For complexes of two or more interacting molecules, the analyzer may report loops at the \"junctions\" of molecules; thus when analyzing loops, it is advisable to exclude complexes with two or more molecules."
+  },
+  {
+    "field": "numOfMultiLoops",
+    "meaning": "This is the number of multi-loops in the molecule. A multi-loop has at least three closing base pairs. For complexes of two or more interacting molecules, the analyzer may report loops at the \"junctions\" of molecules; thus when analyzing loops, it is advisable to exclude complexes with two or more molecules."
+  },
+  {
+    "field": "numOfPseudoknots",
+    "meaning": "This is the number of pseudoknots in the molecule. A pseudoknot has base pairs i.j and i'.j' which overlap, i.e. i < i' < j < j'. Since we include stems of length 1 (i.e. isolated base pairs) in our secondary structures, note that a pseudoknot may contain a pseudoknotted stem of length 1, and a pseudoknot may be broken by removing just one base pair. Precise definitions of pseudoknots, bands, and related pseudoknotted structures can be found in: Linear Time Algorithm for Parsing RNA Secondary Structure, (B. Rastegari and A. Condon), 5th Workshop on Algorithms in Bioinformatics (WABI), Oct 2005."
+  },
+  {
+    "field": "numOfBasePairsInStems",
+    "meaning": "The number of base pairs in a stem is determined by the availability of complementary sequences in the RNA molecule. When two complementary sequences are present, they can form base pairs and create a stem structure."
+  },
+  {
+    "field": "avgStemLength",
+    "meaning": "The length of a stem is the number of base pairs in the stem. The average is taken over all stems in the selected molecule or set of molecules."
+  },
+  {
+    "field": "avgHairpinLength",
+    "meaning": "The length of a hairpin loop is the number of bases (all unpaired) strictly between the bases in the closing base pair of the hairpin. The average is taken over all hairpins in the selected molecule or set of molecules."
+  },
+  {
+    "field": "avgBulgeLength",
+    "meaning": "The length of a bulge loop is the number of (unpaired) bases in a bulge loop. The average is taken over all bulges in the selected molecule or set of molecules."
+  },
+  {
+    "field": "avgInternalLength",
+    "meaning": "The length of an internal loop is the number of (unpaired) bases in the internal loop. The average is taken over all internal loops in the selected molecule or set of molecules."
+  },
+  {
+    "field": "avgMultiLength",
+    "meaning": "The length of a multi loop is the number of (unpaired) bases in a multi loop. The average is taken over all multi loops in the selected molecule or set of molecules."
+  },
+  {
+    "field": "avgBandLength",
+    "meaning": "The length of a band is the number of base pairs in the band. The average is taken over all bands in the selected molecule or set of molecules."
+  }
+]

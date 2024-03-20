@@ -10,6 +10,7 @@ import {
   TableRow,
   Box,
   Container,
+  Typography,
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -70,21 +71,14 @@ const Search = () => {
     navigate(`/search_results?${str}`);
   };
 
-  // Dummy data for the table
-  const virusData = [
-    { name: 'Virus 1', field1: 'Value 1', field2: 'Value 2' },
-    { name: 'Virus 2', field1: 'Value 3', field2: 'Value 4' },
-    { name: 'Virus 3', field1: 'Value 5', field2: 'Value 6' },
-  ];
-
   const rangeFields = [
-    { label: 'Molecule', field: 'molecule' },
+    { label: 'Number of Molecules', field: 'molecule' },
     { label: 'Length', field: 'length' },
     { label: 'Number of domains', field: 'numOfDomains' },
     { label: 'Number of stems', field: 'numOfStems' },
     { label: 'Number of hairpin loops', field: 'numOfHairpinLoops' },
-    { label: 'Number of interna loops', field: 'numOfInternalLoops' },
-    { label: 'Number of multi loops', field: 'numOfMultiLoops' },
+    { label: 'Number of internal loops', field: 'numOfInternalLoops' },
+    { label: 'Number of multi-loops', field: 'numOfMultiLoops' },
     { label: 'Number of pseudoknots', field: 'numOfPseudoknots' },
     { label: 'Number of bulges', field: 'numOfBulges' },
     { label: 'Number of exterior loops', field: 'numOfExteriorLoops' },
@@ -102,14 +96,14 @@ const Search = () => {
   return (
     <>
       <Header />
-
+      <Typography align='center' variant='h6'>Info: The searching is implemented in case-insensitive and substring matching approach.</Typography>
       <form
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           gap: '1rem',
-          margin: '3rem',
+          margin: '2rem',
         }}
         onSubmit={handleSubmit(handleSearch)}
       >
@@ -122,7 +116,7 @@ const Search = () => {
               {...register('source')}
             />
             <TextField
-              label="SourceId"
+              label="Source ID"
               variant="outlined"
               sx={{ margin: '1rem' }}
               {...register('sourceId')}
