@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Search from './pages/Search';
 import Help from './pages/Help';
 import SearchResults from './pages/SearchResults';
+import Details from './pages/Details';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: '/search_results',
     element: <SearchResults />,
+  },
+  {
+    path: '/details/:id',
+    element: <Details />,
   },
 ]);
 

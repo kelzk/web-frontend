@@ -53,14 +53,14 @@ const Search = () => {
             if (input[optionStr] === '<' || input[optionStr] === '>') {
               str += key + '=' + input[optionStr] + value + '&';
             }
-            const isMin = key.includes('_min') ? true : false
-            const isMax = key.includes('_max') ? true : false
+            const isMin = key.includes('_min') ? true : false;
+            const isMax = key.includes('_max') ? true : false;
 
             if (isMin) {
-              const keyStr = key.split('_')[0]
+              const keyStr = key.split('_')[0];
               str += keyStr + '=' + value + '-';
             }
-            if (isMax){
+            if (isMax) {
               str += value + '&';
             }
           }
@@ -215,26 +215,6 @@ const Search = () => {
         </Button>
       </form>
 
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Field 1</TableCell>
-              <TableCell>Field 2</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {virusData.map((virus) => (
-              <TableRow key={virus.name}>
-                <TableCell>{virus.name}</TableCell>
-                <TableCell>{virus.field1}</TableCell>
-                <TableCell>{virus.field2}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
       <Navigation />
     </>
   );

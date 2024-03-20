@@ -114,7 +114,7 @@ const SearchResults = () => {
                 data.map((row) => (
                   <TableRow key={row._id}>
                     <TableCell style={{ width: '40%' }}>
-                      <Link to={`/details/${row.id}`}>{row.name}</Link>
+                      <Link to={`/details/${row.source}_${row.sourceId}`}>{row.name}</Link>
                     </TableCell>
                     <TableCell>{row.type}</TableCell>
                     <TableCell>{row.source}</TableCell>
