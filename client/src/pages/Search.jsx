@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   TextField,
   Button,
@@ -11,11 +11,11 @@ import {
   Box,
   Container,
   Typography,
-} from '@mui/material';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header.jsx';
-import Navigation from '../components/Navigation.jsx';
+} from "@mui/material";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header.jsx";
+import Navigation from "../components/Navigation.jsx";
 const Search = () => {
   const navigate = useNavigate();
 
@@ -34,35 +34,35 @@ const Search = () => {
 
   const handleSearch = (input) => {
     // Access the input value using input.xx
-    let str = 'nPerPage=10&page=0&';
+    let str = "nPerPage=10&page=0&";
     for (const [key, value] of Object.entries(input)) {
       switch (key) {
-        case 'source':
-        case 'sourceId':
-        case 'type':
-        case 'organism':
-        case 'validationTechnique':
-        case 'determinationMethod':
+        case "source":
+        case "sourceId":
+        case "type":
+        case "organism":
+        case "validationTechnique":
+        case "determinationMethod":
           if (input[key]) {
-            str += key + '=' + value + '&';
+            str += key + "=" + value + "&";
           }
           break;
         default:
-          const isOption = key.includes('_option') ? true : false;
+          const isOption = key.includes("_option") ? true : false;
           if (input[key] && !isOption) {
-            const optionStr = key + '_option';
-            if (input[optionStr] === '<' || input[optionStr] === '>') {
-              str += key + '=' + input[optionStr] + value + '&';
+            const optionStr = key + "_option";
+            if (input[optionStr] === "<" || input[optionStr] === ">") {
+              str += key + "=" + input[optionStr] + value + "&";
             }
-            const isMin = key.includes('_min') ? true : false;
-            const isMax = key.includes('_max') ? true : false;
+            const isMin = key.includes("_min") ? true : false;
+            const isMax = key.includes("_max") ? true : false;
 
             if (isMin) {
-              const keyStr = key.split('_')[0];
-              str += keyStr + '=' + value + '-';
+              const keyStr = key.split("_")[0];
+              str += keyStr + "=" + value + "-";
             }
             if (isMax) {
-              str += value + '&';
+              str += value + "&";
             }
           }
       }
@@ -72,86 +72,89 @@ const Search = () => {
   };
 
   const rangeFields = [
-    { label: 'Number of Molecules', field: 'molecule' },
-    { label: 'Length', field: 'length' },
-    { label: 'Number of domains', field: 'numOfDomains' },
-    { label: 'Number of stems', field: 'numOfStems' },
-    { label: 'Number of hairpin loops', field: 'numOfHairpinLoops' },
-    { label: 'Number of internal loops', field: 'numOfInternalLoops' },
-    { label: 'Number of multi-loops', field: 'numOfMultiLoops' },
-    { label: 'Number of pseudoknots', field: 'numOfPseudoknots' },
-    { label: 'Number of bulges', field: 'numOfBulges' },
-    { label: 'Number of exterior loops', field: 'numOfExteriorLoops' },
-    { label: 'Number of segments', field: 'numOfSegments' },
-    { label: 'Number of paired bases', field: 'numOfPairedBases' },
-    { label: 'Number of unpaired bases', field: 'numOfUnpairedBases' },
+    { label: "Number of Molecules", field: "molecule" },
+    { label: "Length", field: "length" },
+    { label: "Number of domains", field: "numOfDomains" },
+    { label: "Number of stems", field: "numOfStems" },
+    { label: "Number of hairpin loops", field: "numOfHairpinLoops" },
+    { label: "Number of internal loops", field: "numOfInternalLoops" },
+    { label: "Number of multi-loops", field: "numOfMultiLoops" },
+    { label: "Number of pseudoknots", field: "numOfPseudoknots" },
+    { label: "Number of bulges", field: "numOfBulges" },
+    { label: "Number of exterior loops", field: "numOfExteriorLoops" },
+    { label: "Number of segments", field: "numOfSegments" },
+    { label: "Number of paired bases", field: "numOfPairedBases" },
+    { label: "Number of unpaired bases", field: "numOfUnpairedBases" },
     {
-      label: 'Number of bands in pseudoknots',
-      field: 'numOfBandsInPseudoknots',
+      label: "Number of bands in pseudoknots",
+      field: "numOfBandsInPseudoknots",
     },
-    { label: 'Number of base pairs in bands', field: 'numOfBasePairsInBands' },
-    { label: 'Number of base pairs in stems', field: 'numOfBasePairsInStems' },
+    { label: "Number of base pairs in bands", field: "numOfBasePairsInBands" },
+    { label: "Number of base pairs in stems", field: "numOfBasePairsInStems" },
   ];
 
   return (
     <>
       <Header />
-      <Typography align='center' variant='h6'>Info: The searching is implemented in case-insensitive and substring matching approach.</Typography>
+      <Typography align="center" variant="h6">
+        Info: The searching is implemented in case-insensitive and substring
+        matching approach.
+      </Typography>
       <form
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '1rem',
-          margin: '2rem',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "1rem",
+          margin: "2rem",
         }}
         onSubmit={handleSubmit(handleSearch)}
       >
         <Container>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
             <TextField
               label="Source"
               variant="outlined"
-              sx={{ margin: '1rem' }}
-              {...register('source')}
+              sx={{ margin: "1rem" }}
+              {...register("source")}
             />
             <TextField
               label="Source ID"
               variant="outlined"
-              sx={{ margin: '1rem' }}
-              {...register('sourceId')}
+              sx={{ margin: "1rem" }}
+              {...register("sourceId")}
             />
             <TextField
               label="Type"
               variant="outlined"
-              sx={{ margin: '1rem' }}
-              {...register('type')}
+              sx={{ margin: "1rem" }}
+              {...register("type")}
             />
           </Box>
         </Container>
         <Container>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
             <TextField
               label="Organism"
               variant="outlined"
-              sx={{ margin: '1rem' }}
-              {...register('organism')}
+              sx={{ margin: "1rem" }}
+              {...register("organism")}
             />
             <TextField
               label="Validation Technique"
               variant="outlined"
-              sx={{ margin: '1rem' }}
-              {...register('validationTechnique')}
+              sx={{ margin: "1rem" }}
+              {...register("validationTechnique")}
             />
             <TextField
               label="Determination Method"
               variant="outlined"
-              sx={{ margin: '1rem' }}
-              {...register('determinationMethod')}
+              sx={{ margin: "1rem" }}
+              {...register("determinationMethod")}
             />
           </Box>
         </Container>
-        <Container sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Container sx={{ display: "flex", justifyContent: "center" }}>
           {!isExpand && (
             <Button variant="contained" onClick={handleToggle}>
               Expand filter
@@ -169,10 +172,10 @@ const Search = () => {
               <div
                 key={field.field}
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  marginBottom: '1rem',
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem",
+                  marginBottom: "1rem",
                 }}
               >
                 <label>{field.label}</label>
@@ -181,7 +184,7 @@ const Search = () => {
                   <option value=">">Greater than</option>
                   <option value="between">Between</option>
                 </select>
-                {watch(`${field.field}_option`) === 'between' ? (
+                {watch(`${field.field}_option`) === "between" ? (
                   <>
                     <input
                       type="number"

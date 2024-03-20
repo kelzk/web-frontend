@@ -9,8 +9,8 @@ import {
   TableContainer,
   TableRow,
   Paper,
-} from '@mui/material';
-const StructureFeature = ({data, structure, substring}) => {
+} from "@mui/material";
+const StructureFeature = ({ data, structure, substring }) => {
   return (
     <Accordion>
       <AccordionSummary>

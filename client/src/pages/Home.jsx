@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Typography, Container, Box, CircularProgress } from '@mui/material';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header.jsx';
-import Navigation from '../components/Navigation.jsx';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Typography, Container, Box, CircularProgress } from "@mui/material";
+import { Link } from "react-router-dom";
+import Header from "../components/Header.jsx";
+import Navigation from "../components/Navigation.jsx";
 const Home = () => {
   const [holdings, setHoldings] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/holdings');
+        const response = await axios.get("http://localhost:3000/holdings");
         setHoldings(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -24,7 +24,7 @@ const Home = () => {
     <>
       <Header />
       <Container>
-        <Box sx={{ padding: '1rem' }}>
+        <Box sx={{ padding: "1rem" }}>
           <Typography variant="h6">
             This database contains ground-truth RNA virus secondary structures
             of any type and organism. The ultimate goal of this database is to
@@ -36,27 +36,27 @@ const Home = () => {
       </Container>
       {!isLoading ? (
         <Typography variant="h6" align="center">
-          Current holdings:{' '}
+          Current holdings:{" "}
           <Link to="/search_results?nPerPage=10&page=0">{holdings}</Link> RNA
           virus secondary structures in total.
         </Typography>
       ) : (
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '200px',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "200px",
           }}
         >
           <CircularProgress />
         </div>
       )}
       <hr />
-      <Typography align="center" variant="h5" >
+      <Typography align="center" variant="h5">
         Disclaimer
       </Typography>
-      <Box sx={{padding:'2rem'}}>
+      <Box sx={{ padding: "2rem" }}>
         <Typography variant="h6">
           Use of the RNA virus secondary structure database is free of charge.
           Although the authors have made every effort to ensure that the

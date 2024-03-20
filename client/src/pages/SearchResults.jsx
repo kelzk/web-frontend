@@ -1,7 +1,7 @@
-import { useLocation, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import queryString from 'query-string';
-import { useEffect, useState } from 'react';
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import queryString from "query-string";
+import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -11,12 +11,12 @@ import {
   TableRow,
   TablePagination,
   CircularProgress,
-  Typography
-} from '@mui/material';
-import Header from '../components/Header.jsx';
-import Navigation from '../components/Navigation.jsx';
+  Typography,
+} from "@mui/material";
+import Header from "../components/Header.jsx";
+import Navigation from "../components/Navigation.jsx";
 const SearchResults = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
   const urlParams = queryString.parse(location.search);
   const [data, setData] = useState([]);
@@ -29,13 +29,13 @@ const SearchResults = () => {
     const getData = async () => {
       setIsLoading(true);
       try {
-        queryParams.nPerPage = rowsPerPage
-        queryParams.page = page
-        let str = '';
+        queryParams.nPerPage = rowsPerPage;
+        queryParams.page = page;
+        let str = "";
         for (const [key, value] of Object.entries(queryParams)) {
-          str += key + '=' + value + '&';
+          str += key + "=" + value + "&";
         }
-        navigate(`/search_results?${str}`)
+        navigate(`/search_results?${str}`);
         const response = await axios.get(`http://localhost:3000/filter?${str}`);
         console.log(response.data);
         setData(response.data);
@@ -52,12 +52,14 @@ const SearchResults = () => {
     const getData = async () => {
       setIsLoading(true);
       try {
-        queryParams.nPerPage = rowsPerPage
-        let str = '';
+        queryParams.nPerPage = rowsPerPage;
+        let str = "";
         for (const [key, value] of Object.entries(queryParams)) {
-          str += key + '=' + value + '&';
+          str += key + "=" + value + "&";
         }
-        const holdings = await axios.get(`http://localhost:3000/filterRowNum?${str}`);
+        const holdings = await axios.get(
+          `http://localhost:3000/filterRowNum?${str}`,
+        );
         setTotalRows(holdings.data);
       } catch (error) {
         console.log(error);
@@ -79,15 +81,21 @@ const SearchResults = () => {
   return (
     <>
       <Header />
-      {!isLoading ? (<Typography variant='h6'>Search Results: {totalRows} records found</Typography>) : <CircularProgress />}
+      {!isLoading ? (
+        <Typography variant="h6">
+          Search Results: {totalRows} records found
+        </Typography>
+      ) : (
+        <CircularProgress />
+      )}
       <TableContainer>
         {isLoading ? (
           <div
             style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '200px',
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "200px",
             }}
           >
             <CircularProgress />
@@ -96,11 +104,10 @@ const SearchResults = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell style={{ width: '55%' }}>Name</TableCell>
-                <TableCell style={{ width: '30%' }}>Type</TableCell>
-                <TableCell style={{ width: '10%' }}>Source</TableCell>
+                <TableCell style={{ width: "55%" }}>Name</TableCell>
+                <TableCell style={{ width: "30%" }}>Type</TableCell>
+                <TableCell style={{ width: "10%" }}>Source</TableCell>
                 <TableCell>Source ID</TableCell>
-
               </TableRow>
             </TableHead>
             <TableBody>
@@ -113,8 +120,10 @@ const SearchResults = () => {
               ) : (
                 data.map((row) => (
                   <TableRow key={row._id}>
-                    <TableCell style={{ width: '40%' }}>
-                      <Link to={`/details/${row.source}_${row.sourceId}`}>{row.name}</Link>
+                    <TableCell style={{ width: "40%" }}>
+                      <Link to={`/details/${row.source}_${row.sourceId}`}>
+                        {row.name}
+                      </Link>
                     </TableCell>
                     <TableCell>{row.type}</TableCell>
                     <TableCell>{row.source}</TableCell>

@@ -1,28 +1,28 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './pages/Home';
-import Search from './pages/Search';
-import Help from './pages/Help';
-import SearchResults from './pages/SearchResults';
-import Details from './pages/Details';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+import Search from "./pages/Search";
+import Help from "./pages/Help";
+import SearchResults from "./pages/SearchResults";
+import Details from "./pages/Details";
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Home />,
   },
   {
-    path: '/search',
+    path: "/search",
     element: <Search />,
   },
   {
-    path: '/help',
+    path: "/help",
     element: <Help />,
   },
   {
-    path: '/search_results',
+    path: "/search_results",
     element: <SearchResults />,
   },
   {
-    path: '/details/:id',
+    path: "/details/:id",
     element: <Details />,
   },
 ]);
