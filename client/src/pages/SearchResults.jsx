@@ -39,7 +39,6 @@ const SearchResults = () => {
         }
         navigate(`/search_results?${str}`);
         const response = await axios.get(`http://localhost:3000/filter?${str}`);
-        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.log(error);
