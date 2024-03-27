@@ -15,6 +15,8 @@ import {
 } from "@mui/material";
 import Header from "../components/Header.jsx";
 import Navigation from "../components/Navigation.jsx";
+import StructureFeature from "../components/StructureFeature.jsx";
+
 const SearchResults = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,7 +39,6 @@ const SearchResults = () => {
         }
         navigate(`/search_results?${str}`);
         const response = await axios.get(`http://localhost:3000/filter?${str}`);
-        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.log(error);
@@ -81,6 +82,11 @@ const SearchResults = () => {
   return (
     <>
       <Header />
+      <StructureFeature
+        data={urlParams}
+        structure={"Search Criteria"}
+        substring={""}
+      />
       {!isLoading ? (
         <Typography variant="h6">
           Search Results: {totalRows} records found
