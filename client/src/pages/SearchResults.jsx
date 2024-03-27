@@ -15,6 +15,8 @@ import {
 } from "@mui/material";
 import Header from "../components/Header.jsx";
 import Navigation from "../components/Navigation.jsx";
+import StructureFeature from "../components/StructureFeature.jsx";
+
 const SearchResults = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -81,6 +83,11 @@ const SearchResults = () => {
   return (
     <>
       <Header />
+      <StructureFeature
+        data={urlParams}
+        structure={"Search Criteria"}
+        substring={""}
+      />
       {!isLoading ? (
         <Typography variant="h6">
           Search Results: {totalRows} records found
