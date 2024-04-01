@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "homepage": "/aihlab/rna-virus-ss-database/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",

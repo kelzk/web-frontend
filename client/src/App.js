@@ -1,37 +1,22 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Help from "./pages/Help";
 import SearchResults from "./pages/SearchResults";
 import Details from "./pages/Details";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/search",
-    element: <Search />,
-  },
-  {
-    path: "/help",
-    element: <Help />,
-  },
-  {
-    path: "/search_results",
-    element: <SearchResults />,
-  },
-  {
-    path: "/details/:id",
-    element: <Details />,
-  },
-]);
 
 const App = () => {
+  const basename = document.querySelector('base')?.getAttribute('href') ?? '/'
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <Router basename={basename}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/help" element={<Help />} />
+        <Route path="/search_results" element={<SearchResults />} />
+        <Route path="/details/:id" element={<Details />} />
+      </Routes>
+    </Router>
   );
 };
 
