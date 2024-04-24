@@ -86,6 +86,15 @@ const Details = () => {
               </TableBody>
             </Table>
           </TableContainer>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ margin: "20px", height: "300px", width: "300px" }}>
+              <img
+                src={`https://raw.githubusercontent.com/kelzk/fyp-RNA-dataset-ground-truth/main/rna-virus/${source}_${sourceId}/${source}_${sourceId}.jpg`}
+                alt="cannot be load, please refer to github files"
+                style={{ objectFit: "contain", width: "100%", height: "100%" }}
+              ></img>
+            </Box>
+          </Box>
           <Typography sx={{ margin: "20px" }} variant="h6" align="center">
             Click on any header below for additional features.
           </Typography>
